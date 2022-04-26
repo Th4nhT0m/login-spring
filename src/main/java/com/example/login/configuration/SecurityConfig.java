@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(config -> {
                     config
                             .antMatchers(
-                                    "student/login"
+                                    "student/login",
+                                    "student/create"
                             )
                             .permitAll()
                             .antMatchers(
@@ -65,6 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         converter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
         return converter;
     }
+
+
 
 
 }

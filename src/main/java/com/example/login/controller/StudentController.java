@@ -41,7 +41,7 @@ public class StudentController {
     @PostMapping("login")
     public ResponseEntity<ResponseResult> login(@RequestBody StudentLogin student) {
         try {
-            return new ResponseEntity<>(new ResponseResult(HttpStatus.OK, "",studentService.login(student)), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseResult(HttpStatus.OK, "",studentService.authenticate(student)), HttpStatus.OK);
 
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

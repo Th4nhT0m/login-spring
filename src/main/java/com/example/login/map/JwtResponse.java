@@ -13,11 +13,11 @@ import java.util.List;
 public class JwtResponse {
   private String type = "Bearer";
   private String accessToken;
-  private String refreshToken;
+//  private String refreshToken;
 
   public JwtResponse(JwtResponse jwt) {
     this.accessToken = jwt.accessToken;
-    this.refreshToken=jwt.refreshToken;
+//    this.refreshToken=jwt.refreshToken;
   }
 
 //

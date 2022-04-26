@@ -39,18 +39,18 @@ public class JwtService implements JwtDAO {
                 .withExpiresAt(calendar.getTime())
                 .sign(Algorithm.RSA256(publicKey, privateKey)));
 
-        calendar.add(Calendar.MINUTE, 33);
-        jwtResponse.setRefreshToken(jwtBuilder
-                .withNotBefore(new Date())
-                .withExpiresAt(calendar.getTime())
-                .sign(Algorithm.RSA256(publicKey, privateKey)));
+//        calendar.add(Calendar.MINUTE, 33);
+//        jwtResponse.setRefreshToken(jwtBuilder
+//                .withNotBefore(new Date())
+//                .withExpiresAt(calendar.getTime())
+//                .sign(Algorithm.RSA256(publicKey, privateKey)));
 
         return jwtResponse;
 
     }
 
     @Override
-    public JwtResponse refreshToken(String Token) {
+    public JwtResponse refreshToken(String token) {
         return null;
     }
 }

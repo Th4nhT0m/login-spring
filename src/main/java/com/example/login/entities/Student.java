@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -31,7 +32,6 @@ public class Student {
 
     @Column(name = "class_name",nullable = false)
     private String className;
-
     @Column(length = 10, columnDefinition = "VARCHAR(10) DEFAULT 'male'")
     private String gender;
 
