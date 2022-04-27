@@ -147,6 +147,7 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
+<!--						<jdkVersion>17.03</jdkVersion>-->
 					</excludes>
 				</configuration>
 			</plugin>
