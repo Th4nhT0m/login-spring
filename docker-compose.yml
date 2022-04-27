@@ -1,0 +1,12 @@
+version: "3.0"
+
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=123456@abc
+      - POSTGRES_DB=DBLogin
+    ports:
+      - "5432:5432"

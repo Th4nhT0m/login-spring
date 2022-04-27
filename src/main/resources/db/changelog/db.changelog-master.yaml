@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/26-01-changelog.xml
