@@ -17,8 +17,11 @@ import com.example.login.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -70,7 +73,7 @@ public class StudentService implements StudentDAO, UserDetailsService {
 
     @Override
     public void addRoleToStudent(String username, String roleName) throws RoleNotFoundException, UserNotFoundException {
-        Role role = roleDAO.getRoleByName("roleName");
+        Role role = roleDAO.getRoleByName(roleName);
         Student student = repository.findStudentByUsername(username);
         if (role == null) throw new RoleNotFoundException();
         if (student == null) throw new UserNotFoundException();
@@ -78,7 +81,7 @@ public class StudentService implements StudentDAO, UserDetailsService {
     }
 
     @Override
-    public JwtResponse login(StudentLogin studentLogin) {
+    public JwtResponse authenticate(StudentLogin studentLogin) {
         UserDetails userDetails;
         try {
             userDetails = loadUserByUsername(studentLogin.getUsername());
@@ -104,6 +107,21 @@ public class StudentService implements StudentDAO, UserDetailsService {
     }
 
     @Override
+    public Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    @Override
+    public Student getCurrentAccount() {
+        Authentication authentication = getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            return repository.findStudentByUsername(currentUserName);
+        }
+        return null;
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Student student = repository.findStudentByUsername(username);
         if (student == null) {
@@ -115,5 +133,12 @@ public class StudentService implements StudentDAO, UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(
                 student.getUsername(), student.getPassword(), grantedAuthorities);
+    }
+
+
+    public Student getCurrentUserInfo() {
+        Student student = getCurrentAccount();
+        if (student == null) return null;
+        return student;
     }
 }
