@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.7</version>
+			<version>1.6.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.liquibase</groupId>
@@ -132,20 +132,21 @@
 			<version>2.3.0</version>
 		</dependency>
 
+
+
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
-<!--						<jdkVersion>17.03</jdkVersion>-->
 					</excludes>
 				</configuration>
 			</plugin>
