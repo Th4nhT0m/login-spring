@@ -131,6 +131,7 @@
 			<artifactId>modelmapper</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -139,6 +140,8 @@
 				<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
